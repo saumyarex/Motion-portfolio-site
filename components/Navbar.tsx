@@ -55,7 +55,7 @@ function Navbar() {
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className="fixed inset-x-0 top-0 mx-auto flex max-w-4xl items-center justify-between rounded-full px-2 py-4"
+        className="fixed inset-x-0 top-0 z-20 mx-auto flex max-w-4xl items-center justify-between rounded-full px-2 py-4"
       >
         <Image
           src={"/profile-pic.jpeg"}
