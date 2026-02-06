@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
   useScroll,
+  useTransform,
 } from "motion/react";
 
 function Navbar() {
@@ -26,13 +27,16 @@ function Navbar() {
       href: "/contact",
     },
     {
-      title: "Blog",
-      href: "/blog",
+      title: "Blogs",
+      href: "/blogs",
     },
   ];
 
   const [scrolled, setScrolled] = useState<boolean>(false);
   const { scrollY } = useScroll();
+
+  const y = useTransform(scrollY, [0, 100], [0, 10]);
+  const width = useTransform(scrollY, [0, 100], ["100%", "50%"]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     console.log("ScrollY:", latest);
@@ -46,10 +50,10 @@ function Navbar() {
   return (
     <Container>
       <motion.nav
-        animate={{
+        style={{
           boxShadow: scrolled ? "var( --shadow-aceternity)" : "",
-          width: scrolled ? "60%" : "100%",
-          y: scrolled ? 10 : 0,
+          width: width,
+          y: y,
         }}
         transition={{
           duration: 0.3,
@@ -57,13 +61,16 @@ function Navbar() {
         }}
         className="fixed inset-x-0 top-0 z-20 mx-auto flex max-w-4xl items-center justify-between rounded-full px-2 py-4"
       >
-        <Image
-          src={"/profile-pic.jpeg"}
-          alt="Profile pic"
-          height={100}
-          width={100}
-          className="h-10 w-10 rounded-full"
-        />
+        <Link href={"/"}>
+          <Image
+            src={"/profile-pic.jpeg"}
+            alt="Profile pic"
+            height={100}
+            width={100}
+            className="h-10 w-10 rounded-full"
+          />
+        </Link>
+
         <div className="flex items-center">
           {navItems.map((item, idx) => (
             <Link

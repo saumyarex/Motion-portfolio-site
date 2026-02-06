@@ -6,12 +6,6 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { getBlog, getBlogsFrontMatter } from "@/utils/mdx";
 import { redirect } from "next/navigation";
 
-// export const metadata: Metadata = {
-//   title: "Blogs by Saumya Rex",
-//   description:
-//     "Blogs by Saumya Rex, a software engineer with a passion for building scalable and efficient systems.",
-// };
-
 export async function generateMetadata({
   params,
 }: {
